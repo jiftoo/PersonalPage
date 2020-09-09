@@ -1,0 +1,26 @@
+.fade-in {
+	animation: slide 250ms, fade-in 250ms;
+}
+.fade-out {
+	animation: fade-in 250ms;
+	animation-direction: reverse;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slide {
+	from {
+		transform: translateX(-1vw);
+	}
+	to {
+		transform: translateX(0);
+	}
+}

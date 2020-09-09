@@ -1,0 +1,86 @@
+.contact-container {
+	display: flex;
+	justify-content: center;
+}
+.contact-container > .vertical {
+	display: flex;
+	flex-flow: column;
+	width: max(44vw, 768px);
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.bubbles {
+	margin-top: 2vw;
+	display: flex;
+	justify-content: space-between;
+}
+.bubbles > div {
+	position: relative;
+	margin-left: 2px;
+	margin-right: 2px;
+	/* border: 6px solid var(--gradient-average); */
+	border-radius: 50%;
+	padding: 4px;
+	padding-top: 6px;
+	cursor: pointer;
+	transition: transform 100ms ease-out;
+	transform: none;
+}
+.bubbles > div > svg {
+	fill: white;
+}
+.bubbles > div:hover {
+	transition: transform 100ms ease-out;
+	transform: translateY(-5px);
+}
+
+/* Set through state */
+.bubble-active {
+	transition: transform 100ms ease-out !important;
+	transform: translateY(5px) !important;
+}
+
+/* L - shape */
+.bubble-active:nth-child(1)::after,
+.bubble-active:nth-child(2)::after {
+	position: absolute;
+	content: " ";
+	top: 110%;
+	bottom: -50%;
+	left: 50%;
+	right: 3%;
+	border-bottom-left-radius: 50%;
+	border-bottom: 3px solid white;
+	border-left: 3px solid white;
+}
+/* | - shape */
+.bubble-active:nth-child(3)::after {
+	position: absolute;
+	content: " ";
+	top: 110%;
+	bottom: -50%;
+	left: 50%;
+	left: 50%;
+	border-left: 3px solid white;
+}
+/* reverse L - shape */
+.bubble-active:nth-child(4)::after,
+.bubble-active:nth-child(5)::after {
+	position: absolute;
+	content: " ";
+	top: 110%;
+	bottom: -50%;
+	right: 50%;
+	left: 3%;
+	border-bottom-right-radius: 50%;
+	border-bottom: 3px solid white;
+	border-right: 3px solid white;
+}
+
+.bubbles-linepath {
+	margin-left: calc(6.2vw * 5);
+	margin-right: calc(6.2vw * 3);
+	margin-top: 3.45vw;
+	border-bottom: 3px solid white;
+}
