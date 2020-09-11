@@ -40,15 +40,20 @@
 	height: 48px;
 	background-color: var(--background);
 	box-shadow: 0 0 10px 2px transparent;
+
+	display: flex;
 }
 .play-o:hover > .play-i {
 	box-shadow: 0 0 12px 1px #ff6600;
 }
 .play-svg {
-	margin-top: 10px;
-	margin-left: 13px;
+	display: block;
+	margin: auto;
 	width: 26px;
 	height: 26px;
+
+	position: relative;
+	left: 3px;
 }
 
 .learn-more > .label {
@@ -57,11 +62,16 @@
 
 @media only screen and (max-width: 560px) {
 	.home-container {
-		padding: 20px;
-		margin: 0;
+		padding-left: 4vw;
+		padding-right: 4vw;
+		margin-left: 0;
+		margin-right: 0;
 		width: auto;
-    }
-    .learn-more {
-        margin-top: 20px;
-    }
+		flex-flow: column;
+		margin-left: 0;
+		text-align: center;
+	}
+	.learn-more {
+		margin-top: 20px;
+	}
 }

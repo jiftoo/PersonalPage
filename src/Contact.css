@@ -1,86 +1,150 @@
 .contact-container {
+	margin-top: 9vh;
+	margin-left: auto;
+	margin-right: auto;
 	display: flex;
-	justify-content: center;
+	flex-flow: row;
+	justify-content: space-evenly;
+	width: max(60vw, 768px);
+	max-width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
 }
-.contact-container > .vertical {
-	display: flex;
-	flex-flow: column;
-	width: max(44vw, 768px);
-	padding-left: 2px;
-	padding-right: 2px;
-}
-
-.bubbles {
-	margin-top: 2vw;
-	display: flex;
-	justify-content: space-between;
-}
-.bubbles > div {
+.contact-container > .info {
 	position: relative;
-	margin-left: 2px;
-	margin-right: 2px;
-	/* border: 6px solid var(--gradient-average); */
-	border-radius: 50%;
-	padding: 4px;
-	padding-top: 6px;
+	top: -3vw;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 20px;
+	max-width: 26vw;
+}
+
+.break-word {
+	word-wrap: normal;
+}
+
+.thin {
+	padding: 8px !important;
+	font-size: 18px !important;
+	margin-bottom: 8px !important;
+}
+
+.form {
+	margin-top: 25px;
+	background-color: var(--background-d);
+	border-radius: 15px;
+	padding: 16px;
+	padding-top: 4%;
+	padding-bottom: 0;
+	max-width: 30vw;
+}
+
+.form > div {
+	margin-bottom: 12px;
+}
+.form > div > input, .form > div > textarea {
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 12px;
+	border: none;
+	border-radius: 5px;
+	background-color: var(--background-l);
+	outline: none;
+	font-size: 20px;
+
+	color: white;
+
+	font-family: "Ubuntu", sans-serif;
+}
+
+/* Email info */
+.email-info {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Personal Info */
+.personal-info {
+	display: flex;
+	justify-content: space-around;
+}
+.personal-info > input {
+	max-width: 140px;
+}
+
+/* Question info */
+.question-info {
+	display: flex;
+	flex-direction: column;
+}
+.question > textarea {
+	resize: none;
+	max-height: 35vh;
+	min-height: 3.5em;
+	height: 3.5em;
+}
+
+/* Footer */
+
+.footer {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+}
+.footer > .submit-button {
 	cursor: pointer;
-	transition: transform 100ms ease-out;
-	transform: none;
+	padding: 9px;
+	margin: 14px;
+	margin-top: 0;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	font-size: 20px;
+	width: 150px;
+	color: white;
+	background: var(--gradient);
 }
-.bubbles > div > svg {
-	fill: white;
+.footer > .submit-button:hover {
+	transition: box-shadow 50ms linear;
+	box-shadow: 0 0 5px 0 var(--gradient-average);
 }
-.bubbles > div:hover {
-	transition: transform 100ms ease-out;
-	transform: translateY(-5px);
-}
-
-/* Set through state */
-.bubble-active {
-	transition: transform 100ms ease-out !important;
-	transform: translateY(5px) !important;
-}
-
-/* L - shape */
-.bubble-active:nth-child(1)::after,
-.bubble-active:nth-child(2)::after {
-	position: absolute;
-	content: " ";
-	top: 110%;
-	bottom: -50%;
-	left: 50%;
-	right: 3%;
-	border-bottom-left-radius: 50%;
-	border-bottom: 3px solid white;
-	border-left: 3px solid white;
-}
-/* | - shape */
-.bubble-active:nth-child(3)::after {
-	position: absolute;
-	content: " ";
-	top: 110%;
-	bottom: -50%;
-	left: 50%;
-	left: 50%;
-	border-left: 3px solid white;
-}
-/* reverse L - shape */
-.bubble-active:nth-child(4)::after,
-.bubble-active:nth-child(5)::after {
-	position: absolute;
-	content: " ";
-	top: 110%;
-	bottom: -50%;
-	right: 50%;
-	left: 3%;
-	border-bottom-right-radius: 50%;
-	border-bottom: 3px solid white;
-	border-right: 3px solid white;
+.footer > .submit-button:active {
+	transform: translateY(1px);
 }
 
-.bubbles-linepath {
-	margin-left: calc(6.2vw * 5);
-	margin-right: calc(6.2vw * 3);
-	margin-top: 3.45vw;
-	border-bottom: 3px solid white;
+@media only screen and (max-width: 510px) {
+	.contact-container {
+		flex-flow: column;
+		margin-left: 0;
+		text-align: center;
+	}
+	.contact-container > * {
+		padding-left: 2vw;
+		padding-right: 2vw;
+	}
+	.contact-container > .info {
+		position: unset;
+
+		padding: 0;
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 1.5vw;
+		width: 100%;
+		max-width: 100%;
+		word-wrap: break-word;
+	}
+	.info > .header {
+		margin-bottom: 8vw !important;
+	}
+	.form {
+		max-width: 100%;
+	}
+	.personal-info > input {
+		width: 37%;
+	}
+
+	.footer > .submit-button {
+		width: 100%;
+	}
 }

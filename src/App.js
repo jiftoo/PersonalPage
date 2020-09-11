@@ -1,7 +1,7 @@
-import React, {PureComponent} from "react";
-import {DiGithubAlt} from "react-icons/di";
-import {ImFacebook, ImTwitter} from "react-icons/im";
-import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import React, { PureComponent } from "react";
+import { DiGithubAlt } from "react-icons/di";
+import { ImFacebook, ImTwitter } from "react-icons/im";
+import { HashRouter, Link, Redirect, Route, Switch } from "react-router-dom";
 import About from "./About";
 import "./App.css";
 import Contact from "./Contact";
@@ -21,13 +21,16 @@ export default class App extends PureComponent {
 			{el: ImFacebook, link: "https://github.com/0x666c/"},
 		];
 
+		this.animationTimeout = -1;
+
 		this.state = {
+			white: false,
 			pageIndex: 0,
 			links: this.shareIcons.map((icon, i) => (
 				<a
 					onClick={(ev) => {
-						ev.target.classList.add("share-container-expand");
-						this.externalLinkFade();
+						this.setWhiteActive(ev.target, true);
+						this.animationTimeout = setTimeout(() => this.setWhiteActive(null, false), 4000);
 					}}
 					href={icon.link}
 					key={i}
@@ -36,10 +39,29 @@ export default class App extends PureComponent {
 				</a>
 			)),
 		};
+
+		this.unloadHandler = this.unloadHandler.bind(this);
 	}
 
-	externalLinkFade() {
-		document.getElementById("not-buttons").classList = "fade-out";
+	// Clear the animation on unload, after the user presses the back button after going to one of the social links
+	unloadHandler(event) {
+		clearTimeout(this.animationTimeout);
+		this.setWhiteActive(null, false);
+	}
+	componentDidMount() {
+		window.addEventListener("unload", this.unloadHandler);
+	}
+	componentWillUnmount() {
+		window.removeEventListener("unload", this.unloadHandler);
+	}
+
+	setWhiteActive(target, bool) {
+		if (bool) {
+			target.classList.add("share-container-expand");
+			document.getElementById("not-buttons").classList.add("fade-out");
+		} else {
+			document.querySelectorAll(".fade-out, .share-container-expand").forEach((el) => el.classList.remove("fade-out", "share-container-expand"));
+		}
 	}
 
 	setLocation(pageIndex) {
@@ -48,16 +70,15 @@ export default class App extends PureComponent {
 
 	render() {
 		return (
-			<BrowserRouter>
+			<HashRouter>
 				<div id="not-buttons">
-					{/* <div className="diagonalbg"></div> */}
 					<nav className="navbar">
 						<div className="logo">
 							<img src="favicon.png" alt="nothin" />
 						</div>
 						<div className="navbar-links">
 							<div className={this.state.pageIndex === 0 ? "current-section" : undefined}>
-								<Link onClick={() => this.setLocation(0)} to="/">
+								<Link onClick={() => this.setLocation(0)} to="/home">
 									Home
 								</Link>
 							</div>
@@ -73,26 +94,27 @@ export default class App extends PureComponent {
 							</div>
 						</div>
 					</nav>
-					<Switch>
-						<>
-							<div className="page-container">
-								<Route exact path="/">
-									<Home />
-								</Route>
-								<Route exact path="/about">
-									<About />
-								</Route>
-								<Route exact path="/contact">
-									<Contact />
-								</Route>
-							</div>
-						</>
-					</Switch>
+					<div className="page-container">
+						<Switch>
+							<Route exact path="/home">
+								<Home />
+							</Route>
+							<Route exact path="/about">
+								<About />
+							</Route>
+							<Route exact path="/contact">
+								<Contact />
+							</Route>
+							<Route>
+								<Redirect to="/home" />
+							</Route>
+						</Switch>
+					</div>
 				</div>
 				<div className="share">
 					<div className="share-container">{this.state.links}</div>
 				</div>
-			</BrowserRouter>
+			</HashRouter>
 		);
 	}
 }
