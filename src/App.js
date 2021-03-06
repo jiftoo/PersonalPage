@@ -15,10 +15,10 @@ export default class App extends PureComponent {
 
 		this.iconSize = "27px";
 		this.shareIcons = [
-			{el: DiGithubAlt, link: "https://github.com/0x666c/"},
-			{el: ImTwitter, link: "https://github.com/0x666c/"},
-			{el: VkLogo, link: "https://github.com/0x666c/"},
-			{el: ImFacebook, link: "https://github.com/0x666c/"},
+			{el: DiGithubAlt, link: "https://github.com/jiftoo/"},
+			{el: ImTwitter, link: "https://github.com/jiftoo/"},
+			{el: VkLogo, link: "https://github.com/jiftoo/"},
+			{el: ImFacebook, link: "https://github.com/jiftoo/"},
 		];
 
 		this.animationTimeout = -1;

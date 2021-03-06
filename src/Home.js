@@ -9,7 +9,7 @@ export default class Home extends PureComponent {
 				<div className="info">
 					<h1 className="header">Lorem Ipsum</h1>
 					<h1 className="paragraph muted">
-						7 dolor sit amet, consectetur adipiscing elit. Curabitur nec blandit leo. Praesent malesuada neque fringilla lacus varius, at dignissim mauris efficitur.
+						11 dolor sit amet, consectetur adipiscing elit. Curabitur nec blandit leo. Praesent malesuada neque fringilla lacus varius, at dignissim mauris efficitur.
 						Etiam et eros quis nisl finibus pellentesque. Proin a magna sollicitudin, consequat sem id, maximus ante. Suspendisse ultrices massa in finibus viverra.
 						Fusce sit amet congue turpis.
 					</h1>
